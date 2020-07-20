@@ -1,19 +1,27 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, View, Text, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  KeyboardAvoidingView,
+  Image,
+} from 'react-native';
+import SignIn from './src/components/SignIn/SignIn';
 
 const App = () => {
   return (
-    <>
-      <SafeAreaView style={styles.body}>
-        <View style={styles.container}>
-          <Image source={require('./src/assets/icons/umbrella-a.png')} />
+    <SafeAreaView style={styles.body}>
+      <KeyboardAvoidingView>
+        <View style={styles.containerLogo}>
+          <Image
+            style={{ width: 80, height: 80 }}
+            source={require('./src/assets/icons/umbrella-a.png')}
+          />
         </View>
 
-        <View style={styles.container}>
-          <Text style={styles.title}>Umbrella Authentication</Text>
-        </View>
-      </SafeAreaView>
-    </>
+        <SignIn />
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -25,15 +33,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F8F8',
     backgroundColor: '#F47660',
   },
-  container: {
+  containerLogo: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 15,
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'center',
-    color: '#FFFFFF',
+    marginBottom: 50,
   },
 });
 
