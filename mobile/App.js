@@ -1,43 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  KeyboardAvoidingView,
-  Image,
-} from 'react-native';
+import React from 'react';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import SignIn from './src/components/SignIn/SignIn';
+import SignUp from './src/components/Signup/SignUp';
 
-const App = () => {
+const Stack = createStackNavigator();
+
+const App = (props) => {
   return (
-    <SafeAreaView style={styles.body}>
-      <KeyboardAvoidingView>
-        <View style={styles.containerLogo}>
-          <Image
-            style={{ width: 80, height: 80 }}
-            source={require('./src/assets/icons/umbrella-a.png')}
-          />
-        </View>
-
-        <SignIn />
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="SignIn"
+        screenOptions={{ headerShown: false }}>
+        <Stack.Screen {...props} name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F8F8F8',
-    backgroundColor: '#F47660',
-  },
-  containerLogo: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 50,
-  },
-});
 
 export default App;

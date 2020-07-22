@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+  SafeAreaView,
   Text,
   TextInput,
   View,
@@ -29,41 +30,53 @@ export default (props) => {
     ]).start();
   }, []);
 
-  return (
-    <Animated.View
-      style={{ opacity: opacity, transform: [{ translateY: offSet.y }] }}>
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        placeholderTextColor="#fff"
-        autoCorrect={false}
-        onChangeText={() => {}}
-      />
+  const redirectSignUp = () => {
+    props.navigation.navigate('SignUp');
+  };
 
-      <View>
+  return (
+    <SafeAreaView style={styles.body}>
+      <View style={styles.containerLogo}>
+        <Image
+          style={{ width: 80, height: 80 }}
+          source={require('../../assets/icons/umbrella-a.png')}
+        />
+      </View>
+      <Animated.View
+        style={{ opacity: opacity, transform: [{ translateY: offSet.y }] }}>
         <TextInput
           style={styles.input}
-          placeholder="Password"
+          placeholder="E-mail"
           placeholderTextColor="#fff"
           autoCorrect={false}
-          secureTextEntry={true}
           onChangeText={() => {}}
         />
 
-        {/* Change w/ React Native Icons */}
-        <Image
-          style={{ position: 'absolute', right: 25, top: 10 }}
-          source={require('../../assets/icons/pass-secret.png')}
-        />
-      </View>
+        <View>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            placeholderTextColor="#fff"
+            autoCorrect={false}
+            secureTextEntry={true}
+            onChangeText={() => {}}
+          />
 
-      <TouchableOpacity style={styles.btnPrimary}>
-        <Text style={styles.btnPrimaryText}>Sign In</Text>
-      </TouchableOpacity>
+          {/* Change w/ React Native Icons */}
+          <Image
+            style={{ position: 'absolute', right: 25, top: 10 }}
+            source={require('../../assets/icons/pass-secret.png')}
+          />
+        </View>
 
-      <TouchableOpacity style={styles.btnSecundary}>
-        <Text style={styles.btnSecundaryText}>Sign Up</Text>
-      </TouchableOpacity>
-    </Animated.View>
+        <TouchableOpacity style={styles.btnPrimary}>
+          <Text style={styles.btnPrimaryText}>Sign In</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.btnSecundary} onPress={redirectSignUp}>
+          <Text style={styles.btnSecundaryText}>Sign Up</Text>
+        </TouchableOpacity>
+      </Animated.View>
+    </SafeAreaView>
   );
 };

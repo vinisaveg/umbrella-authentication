@@ -1,6 +1,18 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 export const styles = StyleSheet.create({
+  body: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F8F8F8',
+    backgroundColor: '#F47660',
+  },
+  containerLogo: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 50,
+  },
   input: {
     width: Dimensions.get('window').width - 100,
     borderBottomColor: '#fff',
