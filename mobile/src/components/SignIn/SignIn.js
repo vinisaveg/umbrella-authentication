@@ -8,11 +8,14 @@ import {
   Animated,
   Image,
 } from 'react-native';
-import { styles } from './styles';
+import { styles } from '../common/styles';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default (props) => {
   const [offSet] = useState(new Animated.ValueXY({ x: 0, y: 80 }));
   const [opacity] = useState(new Animated.Value(0));
+  const [eyeState, setEyeState] = useState('eye-off-outline');
 
   useEffect(() => {
     Animated.parallel([
@@ -32,6 +35,13 @@ export default (props) => {
 
   const redirectSignUp = () => {
     props.navigation.navigate('SignUp');
+  };
+
+  const handleEye = () => {
+    let eyeCurrentState =
+      eyeState === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+
+    setEyeState(eyeCurrentState);
   };
 
   return (
@@ -62,11 +72,11 @@ export default (props) => {
             onChangeText={() => {}}
           />
 
-          {/* Change w/ React Native Icons */}
-          <Image
-            style={{ position: 'absolute', right: 25, top: 10 }}
-            source={require('../../assets/icons/pass-secret.png')}
-          />
+          <TouchableOpacity
+            style={{ position: 'absolute', right: 20, top: 10 }}
+            onPress={handleEye}>
+            <Icon color="#fff" name={eyeState} size={25} />
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity style={styles.btnPrimary}>

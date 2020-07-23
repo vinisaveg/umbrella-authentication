@@ -49,4 +49,9 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
   },
+  btnLink: {
+    marginTop: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
