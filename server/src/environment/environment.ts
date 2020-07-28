@@ -3,4 +3,7 @@ export const environment = {
     port: 3000,
   },
   db: null,
+  security: {
+    saltRounds: 10,
+  },
 }

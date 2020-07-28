@@ -1,23 +1,27 @@
 import express, { Request, Response } from "express"
 import { environment } from "./environment/environment"
+import routes from "../src/routes/index.routes"
 
 class Server {
   application!: express.Application
+
+  bootstrap(): Promise<Server> {
+    return this.initialize()
+  }
 
   initialize(): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
         this.application = express()
 
-        // Setup middlewares
+        this.setupMiddlewares()
+
+        // this.connectToDatabase()
+
+        this.setupRoutes()
 
         this.application.listen(environment.server.port, () => {
           resolve(this.application)
-        })
-
-        // routes just for now...
-        this.application.get("/", (request: Request, response: Response) => {
-          response.send({ message: "Application Initialized." })
         })
 
         resolve(this.application)
@@ -27,8 +31,16 @@ class Server {
     })
   }
 
-  bootstrap(): Promise<Server> {
-    return this.initialize()
+  setupMiddlewares(): void {
+    this.application.use(express.json())
+  }
+
+  connectToDatabase(): void {
+    // Connect to MongoDB
+  }
+
+  setupRoutes(): void {
+    this.application.use("/", routes)
   }
 }
 
