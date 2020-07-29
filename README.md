@@ -8,7 +8,7 @@
 
 ### :mag: About
 
-U/A is a simple authentication app, wich you can use in your future or even apply to your current application.
+U/A is a simple authentication app, wich was made to share and gather knowledge about the React Native and Node.js environment.
 
 ### :sparkler: Design
 
@@ -16,8 +16,40 @@ The design was made on [**_Figma_**](https://www.figma.com/file/EMhzun4ov1Kx13xB
 
 ### :pushpin: Current Application Status
 
-- [ ] Backend
-- [ ] Mobile Application 
+- [x] Server
+- [x] Mobile Application 
 
 ### :construction_worker: Installation
-//
+
+1. Clone this repo: 
+
+```
+    git clone https://github.com/savegdesigner/myContacts.git
+    cd myContacts
+
+```
+
+2. Install all dependencies: (in both folders: Server and Mobile)
+
+```
+    yarn install
+
+```
+
+#### Setting up the Server
+
+3. Setting up Server: 
+
+```
+   // Setup Server
+
+```
+
+#### Setting up the Mobile Application
+
+3. Setting up Mobile: 
+
+```
+   // Setup Mobile
+
+```
