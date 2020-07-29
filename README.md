@@ -24,8 +24,8 @@ The design was made on [**_Figma_**](https://www.figma.com/file/EMhzun4ov1Kx13xB
 1. Clone this repo: 
 
 ```
-    git clone https://github.com/savegdesigner/myContacts.git
-    cd myContacts
+    git clone https://github.com/savegdesigner/umbrella-authentication.git
+    cd umbrella-authentication
 
 ```
 
