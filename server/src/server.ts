@@ -1,30 +1,29 @@
-import express, { Request, Response } from "express"
+import express from "express"
 import { environment } from "./environment/environment"
 import routes from "../src/routes/index.routes"
+import mongoose from "mongoose"
 
 class Server {
   application!: express.Application
 
-  bootstrap(): Promise<Server> {
-    return this.initialize()
+  bootstrap(): Promise<express.Application> {
+    return this.initializeDatabase().then(() => {
+      return this.initialize()
+    })
   }
 
-  initialize(): Promise<any> {
+  initialize(): Promise<express.Application> {
     return new Promise((resolve, reject) => {
       try {
         this.application = express()
 
         this.setupMiddlewares()
 
-        // this.connectToDatabase()
-
         this.setupRoutes()
 
         this.application.listen(environment.server.port, () => {
           resolve(this.application)
         })
-
-        resolve(this.application)
       } catch (error) {
         reject(error)
       }
@@ -35,8 +34,12 @@ class Server {
     this.application.use(express.json())
   }
 
-  connectToDatabase(): void {
-    // Connect to MongoDB
+  initializeDatabase(): Promise<typeof mongoose> {
+    return mongoose.connect(environment.db.url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
   }
 
   setupRoutes(): void {

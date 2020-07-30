@@ -1,5 +1,5 @@
 interface IWrite<T> {
-  create(object: T): Promise<T>
+  create(object: any): Promise<any>
   update(id: string, object: T): Promise<T>
   delete(id: string): Promise<boolean>
 }

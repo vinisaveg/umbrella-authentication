@@ -5,7 +5,7 @@ import CreateUser from "../../services/CreateUser.service"
 
 const usersRouter = Router()
 
-const usersRepository = new UserRepository([])
+const usersRepository = new UserRepository()
 
 usersRouter.get("/", (request: Request, response: Response) => {
   const users = usersRepository.collection

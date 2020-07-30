@@ -1,4 +1,4 @@
-import User from "../models/user/User.model"
+import { User } from "../models/user/User.model"
 import UserRepository from "../repositories/UserRepository"
 
 class CreateUser {
@@ -8,8 +8,8 @@ class CreateUser {
     this.userRepository = userRepository
   }
 
-  run(user: User): Promise<User> {
-    const newUser = this.userRepository.create(user)
+  async run(user: typeof User): Promise<typeof User> {
+    const newUser = await this.userRepository.create(user)
 
     return newUser
   }

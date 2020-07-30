@@ -1,12 +1,9 @@
 import IRead from "../interfaces/IRead"
 import IWrite from "../interfaces/IWrite"
+import { Collection, Connection } from "mongoose"
 
 abstract class BaseRepository<T> implements IRead<T>, IWrite<T> {
-  readonly collection!: Array<T>
-
-  constructor(collection: Array<T>) {
-    this.collection = collection
-  }
+  collection!: Collection
 
   // IRead
   async find(): Promise<Array<T>> {
@@ -18,14 +15,9 @@ abstract class BaseRepository<T> implements IRead<T>, IWrite<T> {
   }
 
   // IWrite
-  async create(object: T): Promise<T> {
-    return new Promise((resolve, reject) => {
-      let newObject = this.collection.push(object)
-
-      if (newObject) {
-        resolve(object)
-      }
-    })
+  create(object: T): Promise<any> {
+    // return this.collection.insertOne(object)
+    throw new Error("Method not implemented.")
   }
 
   async update(id: string): Promise<T> {
