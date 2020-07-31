@@ -8,9 +8,14 @@ const usersRouter = Router()
 const usersRepository = new UserRepository()
 
 usersRouter.get("/", (request: Request, response: Response) => {
-  const users = usersRepository.collection
-
-  return response.json({ users })
+  usersRepository
+    .find()
+    .then((users) => {
+      return response.json({ users })
+    })
+    .catch((error) => {
+      return response.status(400).json({ error: error.message })
+    })
 })
 
 usersRouter.post("/", (request: Request, response: Response) => {
